@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard page</title>
+	<link rel="stylesheet"  href = "{% static 'css/Dashboard/Dashboard.css' %}">
+	<link rel="stylesheet"  href="{% static 'css/Dashboard/addshow_project.css' %}">
+	<link rel="stylesheet"  href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+	<script type="text/javascript" src="{% static 'css/jquery-3.5.1.min.js' %}"></script>
+	
+	
+	
+	
+	
+</head>
+<body>
+
+	<div class="sidebar">
+		<div class="sidebar-brand">
+			<h2><span class="lab la-accusoft"></span>Milestone Tracker</h2>
+		</div>
+		
+		<div class="sidebar-menu">
+			<ul>
+				<li>
+					<a style="text-decoration:none;color:black" href="/" class="active"><span class="fas fa-igloo"></span>
+					<span>Dashboard</span></a>
+				</li>
+
+				<li>
+					<a style="text-decoration:none;" href="/Welcome/user/"><span class=""></span>
+					<span>Developer</span></a>
+				</li>
+
+				<li>
+					<a style="text-decoration:none;" href="/Welcome/project/"><span class="las la-clipboard-list"></span>
+					<span>Projects </span></a>
+				</li>
+                <li>
+					<a style="text-decoration:none;" href="/milestone/"><span class="las la-clipboard-list"></span>
+					<span> Current Milestone </span></a>
+				</li>
+				
+
+				<li>
+					<a style="text-decoration:none;" href="/Welcome/report/"><span><i class="fas fa-clipboard-check"></i></span>
+					<span> Plan Reports</span></a>
+				</li>
+				<li>
+					<a style="text-decoration:none;" href="/Welcome/report_project/"><span><i class="fas fa-clipboard-check"></i></span>
+					<span>Project Reports</span></a>
+				</li>
+				<li>
+				<a style="text-decoration:none;" href="/upload/"><span><i class="fas fa-clipboard-check"></i></span>
+	<span>Project Upload</span></a>
+				
+				
+				</li>
+<li >
+                  <a style="text-decoration:none;color:white"  href="/logout"><span><i class="fas fa-clipboard-check"></i></span><span>Logout</span></a>
+                </li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="main-content">
+    	<div class="row-sm-7">
+	    <h4 class="text-center alert alert-info">Show Plan Details</h4>
+	    <div class="row">
+	    <div class="col-md-2 ">
+	    </div>
+	    <div class="col-md-8 ">
+	    <form action="" method="POST">
+	           {% csrf_token %}
+	           <input type="date" name="from">
+	           <input type="date" name="to">
+	           <input type="submit" value="search">
+	        
+            </form>
+	    
+	    
+	    
+	    
+	    </div>
+	    <div class="col-md-2">
+	    <a href="{% url 'excelReport' %}" class="btn btn-warning">Export To Excel</a>
+	    </div>
+	    </div>
+
+	    {% if querys %}
+
+	    <table class="table table-hover ">
+	    	<thead>
+	    		<tr>
+	    			
+	    			<th scope="col">Project Name</th>
+	    			<th scope="col">Status</th>
+	    			<th scope="col">Use Case Received</th>
+	    			<th scope="col">Feasibility Start Date</th>
+	    			<th scope="col">Feasibility End Date</th>
+	    			<th scope="col">Solution Design Start Date</th>
+	    			<th scope="col">Solution Design End Date</th>
+	    			<th scope="col">Development Start Date</th>
+	    			<th scope="col">Development End Date</th>
+	    			<th scope="col">SIT Start Date</th>
+	    			<th scope="col">SIT End Date</th>
+	    			<th scope="col">UAT Start Date</th>
+	    			<th scope="col">UAT End Start</th>
+	    			<th scope="col">Deployment Start Date</th>
+	    			<th scope="col">Deployment End Date</th>
+	    			
+	    			<th scope="col">Remark</th>
+	    			
+	    			
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    	{% for p in querys %}
+	    		<tr>
+	    			
+	    			<td>{{p.project}}</td>
+	    			<td>{{p.status}}</td>
+	    			<td>{{p.use_case_received}}</td>
+	    			<td>{{p.feasibility_start_date}}</td>
+	    			<td>{{p.feasibility_end_date}}</td>
+	    			<td>{{p.sol_design_start_date}}</td>
+	    			<td>{{p.sol_design_end_date}}</td>
+	    			<td>{{p.development_start_date}}</td>
+	    			<td>{{p.development_end_date}}</td>
+	    			<td>{{p.sit_start_date}}</td>
+	    			<td>{{p.sit_end_date}}</td>
+	    			<td>{{p.uat_start_date}}</td>
+	    			<td>{{p.uat_end_date}}</td>
+	    			<td>{{p.deployment_start_date}}</td>
+	    			<td>{{p.deployment_end_date}}</td>
+	    			
+	    			<td>{{p.remark}}</td>
+	    			
+	    			
+	    			
+	    		</tr>
+	    	{% endfor %}	
+	    	</tbody>
+	    </table>
+
+	    {% else %}
+
+	    <h4 class="text-center alert alert-warning">NoRecords</h4>
+
+	    {% endif %}
+    </div>
+		
+
+		
+    </div>
+	</div>
+</main>
+</body>
+</html>

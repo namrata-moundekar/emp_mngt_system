@@ -1,0 +1,104 @@
+{% extends 'Dashboard/base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-8 offset-2">
+		<h4 class="alert bg-warning">Update Employee Information</h4>
+		<form action="{% url 'add_or_update_emp' emp_id=emp.id %}" method="POST">
+			{% csrf_token %}
+	          <div class="row pt-3">
+                		<div class="col-md-12" >
+                		<label>Code</label>
+                        <input type="text" class="form-control" value="{{emp.code}}"  name="code" required />
+
+	           		    </div>
+
+	           		    <div class="col-md-12">
+	           			<label>First Name</label>
+                        <input type="text" class="form-control" value="{{emp.first_name}}"  name="first_name" />
+
+                        </div>
+				   <div class="col-md-12" >
+                		<label>Last Name</label>
+                        <input type="text" class="form-control" value="{{emp.last_name}}"  name="last_name" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Salary</label>
+                        <input type="number" class="form-control"  value="{{emp.salary}}" name="salary" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Email</label>
+                        <input type="email" class="form-control" value="{{emp.email}}"  name="email" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Date of Birth</label>
+                        <input type="date" class="form-control"  value="{{emp.dob}}" name="dob" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Gender</label>
+					   <select name="gender" id="gender" class="form-select "  required>
+						   <option {% if gender == 'Male' %} selected {% endif %}>Male</option>
+							<option {% if gender == 'Female' %} selected {% endif %}>Female</option>
+
+                    </select>
+<!--                        <input type="text" class="form-control"  value="{{emp.gender}}" name="gender" required />-->
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Upload File</label>
+                        <input id="file" type="file" class="form-control" value="{{emp.upload_file}}"  name="upload_file" accept=".pdf" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Status</label>
+					   <select value="{{emp.status}}"  name="status" id="status" class="form-select " required>
+                        <option {% if status == 'Active' %} selected {% endif %}>Active</option>
+							<option {% if status == 'Inactive' %} selected {% endif %}>Inactive</option>
+
+
+                    </select>
+<!--                        <input type="number" class="form-control" value="{{emp.status}}" name="status" required />-->
+
+	           		    </div>
+<!--				   <div class="col-md-12" >-->
+<!--                		<label>Position</label>-->
+<!--&lt;!&ndash;						<select name="position" class="form-control">&ndash;&gt;-->
+<!--&lt;!&ndash;							&lt;!&ndash; Render options based on your Position model &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							{% for position in positions %}&ndash;&gt;-->
+<!--&lt;!&ndash;								<option value="{{ position.id }}">{{ position.name }}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;							{% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;					   </select>&ndash;&gt;-->
+<!--                        <input type="text" class="form-control" value="{{emp.position}}"  name="position" required />-->
+
+<!--	           		    </div>-->
+<!--				   <div class="col-md-12" >-->
+<!--                		<label>Department</label>-->
+<!--&lt;!&ndash;						<select name="dept" class="form-control">&ndash;&gt;-->
+<!--&lt;!&ndash;							&lt;!&ndash; Render options based on your Department model &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							{% for department in departments %}&ndash;&gt;-->
+<!--&lt;!&ndash;								<option value="{{ department.id }}">{{ department.name }}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;							{% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;						</select>&ndash;&gt;-->
+<!--                        <input type="text" class="form-control" value="{{emp.dept}}"  name="dept" required />-->
+
+<!--	           		    </div>-->
+				   <div class="col-md-12" >
+                		<label>Phone Number</label>
+                        <input type="tel" class="form-control" value="{{emp.phone}}"  name="phone" required />
+
+	           		    </div>
+				   <div class="col-md-12" >
+                		<label>Date of Hire</label>
+                        <input type="date" class="form-control" value="{{emp.hire_date}}" name="hire_date" required />
+
+	           		    </div>
+                    </div></br>
+			<input type="submit" value="Update" class="btn btn-success">
+			<a href="/dash/" class="btn btn-success">Back to Project</a>
+		</form>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'Dashboard/base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-8 offset-2">
+		<h4 class="alert bg-warning">Update Project Information</h4>
+		<form action="{% url 'add_or_update_dept' dept_id=dept.id %}" method="POST">
+			{% csrf_token %}
+	        <div class="row pt-3">
+                		<div class="col-md-6" >
+                		<label>Department Name</label>
+                        <input type="text" class="form-control" value="{{dept.name}}" name="name" required />
+
+	           		    </div>
+
+	           		    <div class="col-md-6">
+	           			<label>Description</label>
+                        <input type="text" class="form-control" value="{{dept.description}}" name="description" />
+
+                        </div>
+                    </div></br>
+			<input type="submit" value="Update" class="btn btn-success">
+			<a href="/dash/" class="btn btn-success">Back to Project</a>
+		</form>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard page</title>
+	<link rel="stylesheet"  href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet"  href="{% static 'css/Dashboard/Dashboard.css' %}">
+	
+	<link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
+    
+	
+    
+	<link rel="stylesheet" href="{% static 'css/js/bootstrap.min.js' %}">
+	<script type="text/javascript" src="{% static 'css/jquery-3.5.1.min.js' %}"></script>
+	
+	
+	
+	
+	
+</head>
+<body>
+
+	<div class="container-fluid">
+
+
+	<div class="row">
+<div class="col-sm-2">
+</div>
+	<div class="col-sm-8">
+		<h4 class="text-center alert alert-warning">Search Employee Details</h4>
+
+
+	    <form action="" method="POST" class="form-inline my-5">
+    	{% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 " type="submit">Search</button>
+			<button type="button" class="btn btn-outline-warning btn-rounded " data-mdb-ripple-color="dark"><a href="/dash/" style="color:black">&laquo;Back to Dashboard</a></button>
+
+    </form>
+	 </div>
+	    
+	<div class="col-sm-2">
+</div>
+</div>    
+<div class="row">
+
+<div class="col-sm-12">	   
+	   <h4 class="text-center alert alert-warning">Show Employee Details</h4>
+
+{% if posts %}	   
+
+	     <table  class="table table-striped table-bordered" style="">
+	    	<thead>
+	    		<tr>
+	    			
+	    			
+	    			<th scope="col">Emp Code</th>
+	    			<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+	    			<th scope="col">Salary</th>
+					<th scope="col">Email</th>
+	    			<th scope="col">Date of Birth</th>
+					<th scope="col">Gender</th>
+	    			<th scope="col">Upload File</th>
+					<th scope="col">Status</th>
+	    			<th scope="col">Position</th>
+					<th scope="col">Department</th>
+	    			<th scope="col">Phone</th>
+					<th scope="col">Hire date</th>
+
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    	 {% for u in posts %}
+	    		<tr>
+
+	    			<td>{{u.code}}</td>
+	    			<td>{{u.first_name}}</td>
+	    			<td>{{u.last_name}}</td>
+	    			<td>{{u.salary}}</td>
+	    			<td>{{u.email}}</td>
+	    			<td>{{u.dob}}</td>
+	    			<td>{{u.gender}}</td>
+	    			<td>{{u.upload_file}}</td>
+	    			<td>{{u.status}}</td>
+	    			<td>{{u.position}}</td>
+	    			<td>{{u.dept}}</td>
+					<td>{{u.phone}}</td>
+	    			<td>{{u.hire_date}}</td>
+
+	    			
+	    			
+	    		</tr>
+	    		{% endfor %}
+	    	</tbody>
+	    </table>
+	    {% else %}
+<h4 class="text-center alert alert-info">NoRecords</h4>   
+
+        {% endif %}
+
+	   
+
+	  
+        
+    </div>
+	    </div>
+
+	   
+
+</div>
+		
+    
+</main>
+</body>
+</html>
